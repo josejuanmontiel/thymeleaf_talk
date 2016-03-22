@@ -18,3 +18,15 @@ slides:
 - slide:
     commit: fe28619355bb17cb54a923df85eb31c767d9a0a0
     message: Y ahora a generar HTML como churros (o donuts)
+- slide:
+    commit: b371222b75c9d838adceabb4cc849a1241126970
+    message: Subimos el config del git-presenter
+- slide:
+    commit: c47844db1b8f922a2e0e028e498dbb481a83f8e6
+    message: Ejemplo de aplicacion spring-boot
+- slide:
+    commit: 5738f2a612cc14c397dc3d5a9022f65062c0d216
+    message: Movemos los ficheros dentro de la carpeta de spring-boot
+- slide:
+    commit: 1dcb8f25b60b3f6a774e26d1b6d633986d903bb5
+    message: Cambios para que coja los cambios en el html en caliente.
