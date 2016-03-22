@@ -7,7 +7,51 @@
 Jose Juan Montiel <josejuan.montiel@tecnilogica.com>
 v1.0, 2016-03-22
 
-== Como generar la presentacion.
+== Primer fichero
+
+[source,html]
+.Primera version de un html
+----
+<!doctype html>
+<html>
+<head></head>
+<body></body>
+</html>
+----
+
+== Pongamos CSS, JS e IMG
+
+[source,html]
+.Segunda version del html usando css, js e imagenes.
+----
+<!doctype html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="css/main.css" media="all">
+		<script type="text/javascript" src="js/main.js"></script>
+	</head>
+<body>
+	<img src="img/logo_0.png">
+	<button onclick="ejemplo()">LOGICA</button>
+</body>
+</html>
+----
+
+== Y ahora copy/paste
+
+Una vez que tenemos la estructura nos ponemos a hacer paginas como churros.
+
+[canvas-image=images/Krispy_Kreme_Doughnuts.jpg]
+== Slide Two's Title will not be displayed
+
+[.canvas-caption, position=center-up]
+By Neil T - CC BY-SA 2.0
+
+== Como usar Git Presenter
+
+Se han seguido los pasos de https://github.com/pythonandchips/git-presenter[esta documentacion].
+
+== Como generar la presentacion con asciidoctor
 
 Se han seguido los pasos de http://asciidoctor.org/docs/install-and-use-deckjs-backend/[esta documentacion].
 
