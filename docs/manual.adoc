@@ -55,6 +55,13 @@ Vamos a crear un proyecto spring-boot usando esta web: http://start.spring.io/
 
 Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun
 
+== Para que coja los cambios en caliente (empecemos con el HTML)
+
+Añadimos al build.gradle
+
+	bootRun {
+    	addResources = true
+	}
 
 == Como usar Git Presenter
 
