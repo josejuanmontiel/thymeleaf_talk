@@ -47,6 +47,15 @@ Una vez que tenemos la estructura nos ponemos a hacer paginas como churros.
 [.canvas-caption, position=center-up]
 By Neil T - CC BY-SA 2.0
 
+== Empezemos con Thymeleaf
+
+Thymeleaf es un sistema de templatign Java, que se suele utilizar dentro del ecosistema Spring.
+
+Vamos a crear un proyecto spring-boot usando esta web: http://start.spring.io/
+
+Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun
+
+
 == Como usar Git Presenter
 
 Se han seguido los pasos de https://github.com/pythonandchips/git-presenter[esta documentacion].
