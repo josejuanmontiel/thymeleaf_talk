@@ -1,0 +1,19 @@
+= Charla: Thymeleaf para frontender
+:toc:
+:source-highlighter: coderay
+:deckjs_theme: web-2.0
+:deckjs_transition: horizontal-slide
+:navigation:
+Jose Juan Montiel <josejuan.montiel@tecnilogica.com>
+v1.0, 2016-03-22
+
+== Como generar la presentacion.
+
+Se han seguido los pasos de http://asciidoctor.org/docs/install-and-use-deckjs-backend/[esta documentacion].
+
+Para generar:
+
+* HTML
+** asciidoctor -T asciidoctor-deck.js/templates/haml manual.adoc
+* PDF
+** asciidoctor -r asciidoctor-pdf -b pdf manual.adoc
