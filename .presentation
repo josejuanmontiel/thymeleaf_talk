@@ -1,0 +1,20 @@
+---
+slides:
+- slide:
+    commit: 876e2b47039b59bd7980c6899f235330f9e0055e
+    message: add README
+- slide:
+    commit: bf138dc2e9ca13713750f72013796eab7ce8e833
+    message: Subimos README.md
+- slide:
+    commit: 22df5f5287b798cbc97cc6730f757bffe31374f6
+    message: Ejemplo de HTML basico.
+- slide:
+    commit: f21bacee948cd5d5aa09c741cc4f1ff385cde657
+    message: Un ejemplo mas complejo de HTML con import de CSS,JS e IMG.
+- slide:
+    commit: 3737e9829039f23ac3a8cfe7d38f27602aec0495
+    message: Como generar esta documentacion.
+- slide:
+    commit: fe28619355bb17cb54a923df85eb31c767d9a0a0
+    message: Y ahora a generar HTML como churros (o donuts)
