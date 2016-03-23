@@ -4,6 +4,7 @@
 :source-highlighter: coderay
 :deckjs_theme: web-2.0
 :deckjs_transition: horizontal-slide
+:customcss: sass/custom.scss
 :navigation:
 Jose Juan Montiel <josejuan.montiel@tecnilogica.com>
 v1.0, 2016-03-22
@@ -47,10 +48,10 @@ Bueno, si, usais CSS, JS e IMAGENES.
 Una vez que tenemos la estructura nos ponemos a hacer paginas como churros.
 
 [canvas-image=images/Krispy_Kreme_Doughnuts.jpg]
-== Slide Two's Title will not be displayed
+== Slide Title will not be displayed
 
 [.canvas-caption, position=center-up]
-By Neil T - CC BY-SA 2.0
+By Neil T
 
 == Empezemos con Thymeleaf
 
@@ -126,20 +127,131 @@ pasa a
 <li><a href="page1.html" th:href="page1">Page 1</a></li>
 ----
 
+== Punto de no retorno
+
+A partir de este momento, hay opciones para poder seguir viendo el "html plano" sin necesidad de levantar servidor:
+
+* Thymol
+* Thymeleaf3 - Decoupled logic
+
+Podrias saltar a meter logica a las templates, bindings, rest... pero tu que eres maquetador,
+te gusta estructurar tu HTML en componentes y no tener que repetir menus, headers, footes y componentes por todas partes.
+
+[canvas-image=images/htmlothymeleaf.jpg]
+== Slide Title will not be displayed
+[.canvas-caption, position=]
+
 == Ahora que son templates, porque no usar toda la potencia
 
-Layouts
-Includes
+Layouts, includes... http://www.thymeleaf.org/doc/articles/layouts.html
+
+== Layout
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Gochez - </title>
+
+    <link type="text/css" rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}" media="all" />
+    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+  </head>
+  <body>
+    <!--/* Standard layout can be mixed with Layout Dialect */-->
+    <div th:replace="fragments/header :: header">
+      ...
+    </div>
+    <div class="container">
+      <div layout:fragment="content">
+
+      </div>
+      <div th:replace="fragments/footer :: footer">&copy; 2016 The Gochez Templates</div>
+    </div>
+  </body>
+</html>
+----
+
+== Uso del layout
+
+[source,html]
+----
+<!DOCTYPE html>
+<html layout:decorator="layouts/main">
+	<head>
+		<title>Index</title>
+		<link type="text/css" rel="stylesheet" href="../static/css/main.css" th:href="@{/css/index.css}" media="all" />
+	</head>
+<body class="colortecni-index">
+	<!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+    <div layout:fragment="content">
+		<img src="../static/img/logo_0.png" th:src="@{/img/logo_0.png}"/>
+		<button onclick="ejemplo()">LOGICA</button>
+	</div>
+</body>
+</html>
+----
+
+== Includes
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div th:fragment="header">
+        <ul>
+            <li><a href="page1.html" th:href="page1">Page 1</a></li>
+			...
+            <li><a href="page6.html" th:href="page6">Page 6</a></li>
+        </ul>
+    </div>
+  </body>
+</html>
+----
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div th:fragment="footer">&copy; 2016 The Gochez Templates</div>
+  </body>
+</html>
+----
+
+[canvas-image=images/layouts-includes.png]
+== Slide Title will not be displayed
 
 == Porque no ir mas alla, formularios
 
 Binding, y la potencia de groovy
 
+== Flujose de control en thymeleaf
+
+== Thymeleaf pro tips
+
+Projection & selection on collection
+
+https://doanduyhai.wordpress.com/2012/04/14/spring-mvc-part-iv-thymeleaf-advanced-usage/
+
+[source,html]
+----
+    <tr th:each="artist,rowStat : ${listArtits.?[alive == true]}">
+    <tr th:each="artist,rowStat : ${listArtits.![firstname+' '+lastname]}">
+    <tr th:each="artist,rowStat : ${listArtits.?[alive == true].![firstname+' '+lastname]}">
+----
+
 == Thymeleaf 3
 
 http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html
 
-Docoupled logic: http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic
+Decoupled logic: http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic
 
 [source,html]
 .home.html Template sin logica extra

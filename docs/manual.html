@@ -103,6 +103,7 @@ table.CodeRay td.code>pre{padding:0}
 <link href="deck.js/extensions/toc/deck.toc.css" media="screen" rel="stylesheet">
 <link href="deck.js/themes/style/web-2.0.css" media="screen" rel="stylesheet">
 <link href="deck.js/themes/transition/horizontal-slide.css" media="screen" rel="stylesheet">
+<link href="sass/custom.scss" rel="stylesheet">
 <link href="deck.js/core/print.css" media="print" rel="stylesheet">
 <script src="deck.js/modernizr.custom.js"></script>
 </head>
@@ -155,8 +156,8 @@ table.CodeRay td.code>pre{padding:0}
 <h2>Y ahora copy/paste</h2>
 <div class="paragraph"><p>Una vez que tenemos la estructura nos ponemos a hacer paginas como churros.</p></div>
 </section>
-<section class="slide canvas-image" id="_slide_two_s_title_will_not_be_displayed" style="background-image: url(images/Krispy_Kreme_Doughnuts.jpg)">
-<div class="paragraph canvas-caption"><p class="center-up">By Neil T - CC BY-SA 2.0</p></div>
+<section class="slide canvas-image" id="_slide_title_will_not_be_displayed" style="background-image: url(images/Krispy_Kreme_Doughnuts.jpg)">
+<div class="paragraph canvas-caption"><p class="center-up">By Neil T</p></div>
 </section>
 <section class="slide" id="_empezemos_con_thymeleaf">
 <h2>Empezemos con Thymeleaf</h2>
@@ -227,19 +228,135 @@ Hacer uso de un css distinto, y de un js distinto..</p></div>
 </div>
 </div>
 </section>
-<section class="slide" id="_ahora_que_son_templates_porque_no_usar_toda_la_potencia">
+<section class="slide" id="_punto_de_no_retorno">
+<h2>Punto de no retorno</h2>
+<div class="paragraph"><p>A partir de este momento, hay opciones para poder seguir viendo el "html plano" sin necesidad de levantar servidor:</p></div>
+<div class="ulist">
+<ul>
+<li>Thymol</li>
+<li>Thymeleaf3 - Decoupled logic</li>
+</ul>
+</div>
+<div class="paragraph"><p>Podrias saltar a meter logica a las templates, bindings, rest&#8230;&#8203; pero tu que eres maquetador,
+te gusta estructurar tu HTML en componentes y no tener que repetir menus, headers, footes y componentes por todas partes.</p></div>
+</section>
+<section class="slide canvas-image" id="_slide_title_will_not_be_displayed_2" style="background-image: url(images/htmlothymeleaf.jpg)">
+
+</section>
+<section class="canvas-caption slide" id="_ahora_que_son_templates_porque_no_usar_toda_la_potencia">
 <h2>Ahora que son templates, porque no usar toda la potencia</h2>
-<div class="paragraph"><p>Layouts
-Includes</p></div>
+<div class="paragraph"><p>Layouts, includes&#8230;&#8203; <a class="bare" href="http://www.thymeleaf.org/doc/articles/layouts.html">http://www.thymeleaf.org/doc/articles/layouts.html</a></p></div>
+</section>
+<section class="slide" id="_layout">
+<h2>Layout</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="comment">&lt;!--/*  Each token will be replaced by their respective titles in the resulting page. */--&gt;</span>
+    <span class="tag">&lt;title</span> <span class="attribute-name">layout:title-pattern</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">$DECORATOR_TITLE - $CONTENT_TITLE</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Gochez - <span class="tag">&lt;/title&gt;</span>
+
+    <span class="tag">&lt;link</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/css/main.css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/css/main.css}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">media</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/javascript</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/js/main.js</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/js/main.js}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="comment">&lt;!--/* Standard layout can be mixed with Layout Dialect */--&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">th:replace</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fragments/header :: header</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      ...
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attribute-name">layout:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attribute-name">th:replace</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fragments/footer :: footer</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="entity">&amp;copy;</span> 2016 The Gochez Templates<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_uso_del_layout">
+<h2>Uso del layout</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attribute-name">layout:decorator</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">layouts/main</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;head&gt;</span>
+                <span class="tag">&lt;title&gt;</span>Index<span class="tag">&lt;/title&gt;</span>
+                <span class="tag">&lt;link</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/css/main.css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/css/index.css}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">media</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">colortecni-index</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="comment">&lt;!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">layout:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/img/logo_0.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/img/logo_0.png}</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+                <span class="tag">&lt;button</span> <span class="attribute-name">onclick</span>=<span class="string"><span class="delimiter">&quot;</span>ejemplo()<span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>LOGICA<span class="tag">&lt;/button&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_includes">
+<h2>Includes</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">th:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">header</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">page1.html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">page1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Page 1<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                        ...
+            <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">page6.html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">page6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Page 6<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">th:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footer</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="entity">&amp;copy;</span> 2016 The Gochez Templates<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+</section>
+<section class="slide canvas-image" id="_slide_title_will_not_be_displayed_3" style="background-image: url(images/layouts-includes.png)">
+
 </section>
 <section class="slide" id="_porque_no_ir_mas_alla_formularios">
 <h2>Porque no ir mas alla, formularios</h2>
 <div class="paragraph"><p>Binding, y la potencia de groovy</p></div>
 </section>
+<section class="slide" id="_flujose_de_control_en_thymeleaf">
+<h2>Flujose de control en thymeleaf</h2>
+
+</section>
+<section class="slide" id="_thymeleaf_pro_tips">
+<h2>Thymeleaf pro tips</h2>
+<div class="paragraph"><p>Projection &amp; selection on collection</p></div>
+<div class="paragraph"><p><a class="bare" href="https://doanduyhai.wordpress.com/2012/04/14/spring-mvc-part-iv-thymeleaf-advanced-usage/">https://doanduyhai.wordpress.com/2012/04/14/spring-mvc-part-iv-thymeleaf-advanced-usage/</a></p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;tr</span> <span class="attribute-name">th:each</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">artist,rowStat : ${listArtits.?[alive == true]}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;tr</span> <span class="attribute-name">th:each</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">artist,rowStat : ${listArtits.![firstname+' '+lastname]}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;tr</span> <span class="attribute-name">th:each</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">artist,rowStat : ${listArtits.?[alive == true].![firstname+' '+lastname]}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span></code></pre>
+</div>
+</div>
+</section>
 <section class="slide" id="_thymeleaf_3">
 <h2>Thymeleaf 3</h2>
 <div class="paragraph"><p><a class="bare" href="http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html">http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html</a></p></div>
-<div class="paragraph"><p>Docoupled logic: <a class="bare" href="http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic">http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic</a></p></div>
+<div class="paragraph"><p>Decoupled logic: <a class="bare" href="http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic">http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic</a></p></div>
 <div class="listingblock">
 <div class="title">home.html Template sin logica extra</div>
 <div class="content">
