@@ -1,12 +1,6 @@
 ---
 slides:
 - slide:
-    commit: 876e2b47039b59bd7980c6899f235330f9e0055e
-    message: add README
-- slide:
-    commit: bf138dc2e9ca13713750f72013796eab7ce8e833
-    message: Subimos README.md
-- slide:
     commit: 22df5f5287b798cbc97cc6730f757bffe31374f6
     message: Ejemplo de HTML basico.
 - slide:
@@ -19,9 +13,6 @@ slides:
     commit: fe28619355bb17cb54a923df85eb31c767d9a0a0
     message: Y ahora a generar HTML como churros (o donuts)
 - slide:
-    commit: b371222b75c9d838adceabb4cc849a1241126970
-    message: Subimos el config del git-presenter
-- slide:
     commit: c47844db1b8f922a2e0e028e498dbb481a83f8e6
     message: Ejemplo de aplicacion spring-boot
 - slide:
@@ -30,3 +21,6 @@ slides:
 - slide:
     commit: 1dcb8f25b60b3f6a774e26d1b6d633986d903bb5
     message: Cambios para que coja los cambios en el html en caliente.
+- slide:
+    commit: b6ee6c36818ea252ef78b1da7db622ff887ab7d4
+    message: Perfilamos documentacion completa
