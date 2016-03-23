@@ -4,15 +4,61 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		jcenter()
+		maven { url 'http://dl.bintray.com/robfletcher/gradle-plugins' }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.2'
+		classpath 'com.github.jruby-gradle:jruby-gradle-plugin:0.1.5'
+		classpath 'org.gradle.plugins:gradle-compass:1.0.7'
 	}
 }
 
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+
+apply plugin: 'org.asciidoctor.gradle.asciidoctor'
+apply plugin: 'com.github.jruby-gradle.base'
+apply plugin: 'compass'
+apply plugin: 'idea'
+
+compass {
+	cssDir = file('docs/css')
+	sassDir = file('docs/sass')
+}
+
+asciidoctor.dependsOn compileSass
+
+asciidoctor {
+	dependsOn jrubyPrepareGems
+
+	sourceDir = new File('docs')
+	outputDir = new File('docs')
+	backends = ['html5']       // 'deckjs', 'html5'
+	requires = ['haml']
+	options = [
+		template_dirs: ["${projectDir}/docs/asciidoctor-deck.js/templates/haml".toString()],
+	]
+	attributes = [
+		'imagesdir': 'docs/images',
+		'source-highlighter': 'coderay',
+		'deckjs_theme': 'web-2.0', // 'web-2.0' , 'swiss', 'neon'
+		'deckjs_transition': 'horizontal-slide', // 'fade', 'horizontal-slide' , 'vertical-slide'
+		'navigation':'',
+		'goto':'',
+		'menu':'',
+		'status':'',
+		'split':'',
+		'blank':'',
+		'icons':'font',
+		//		'customcss': 'css/custom.css',
+		'viewport': 'width=1000, user-scalable=yes',
+		'sectids!': '',
+		'showtitle':''
+	]
+}
 
 bootRun {
     addResources = true
@@ -27,10 +73,11 @@ targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
-
 dependencies {
+	gems 'rubygems:haml:4.0.6'
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-aop')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')

@@ -1,4 +1,5 @@
 = Charla: Thymeleaf para frontender
+:title: Titulo
 :toc:
 :source-highlighter: coderay
 :deckjs_theme: web-2.0
@@ -63,6 +64,49 @@ Añadimos al build.gradle
     	addResources = true
 	}
 
+== Hasta ahora solo es html
+
+Notar que hasta ahora estabamos mostrando estaticos, pero thymeleaf usa atributos distintos de los estandar con lo que podriamos seguir maquetando en "plano", notar los imports.
+
+== Si los transformamos en templates
+
+Añadimos un controlador (para gobernarlos a todos) y ponemos los tags de thymeleaf (dejando los estandar)
+Hacer uso de un css distinto, y de un js distinto..
+
+== Ahora que son templates, porque no usar toda la potencia
+
+Layouts
+Includes
+
+== Porque no ir mas alla, formularios
+
+Binding, y la potencia de groovy
+
+== Thymeleaf 3
+
+http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html
+
+Docoupled logic
+
+
+== JBake
+
+http://jbake.org/docs/2.4.0/#project_structure
+
+== Servicios rest - JSON
+
+https://github.com/olivergierke/spring-restbucks
+https://github.com/ilopmar/contest
+
+== SASS / LESS - Gradle
+
+https://github.com/robfletcher/gradle-compass
+http://broonix-rants.ghost.io/spring-boot-building-bootstrap-with-gulp-2/
+
+== Grooscript
+
+http://grooscript.org/doc.html
+
 == Como usar Git Presenter
 
 Se han seguido los pasos de https://github.com/pythonandchips/git-presenter[esta documentacion].
@@ -71,9 +115,13 @@ Se han seguido los pasos de https://github.com/pythonandchips/git-presenter[esta
 
 Se han seguido los pasos de http://asciidoctor.org/docs/install-and-use-deckjs-backend/[esta documentacion].
 
-Para generar:
+Para generar (ejecutar dentro de docs):
 
 * HTML
 ** asciidoctor -T asciidoctor-deck.js/templates/haml manual.adoc
 * PDF
 ** asciidoctor -r asciidoctor-pdf -b pdf manual.adoc
+
+Usndo gradle (en la raiz)
+
+** gradle asciidoctor

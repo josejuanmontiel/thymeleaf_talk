@@ -1,0 +1,28 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\000031}}
+.admonitionblock { padding-top: 20px; padding-bottom: 20px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\000034}}
+.admonitionblock > table { width: 100%; background-color: #ffffff; border-collapse: separate; border-spacing: 0; border: 1px solid #9EC6DF; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000312}}
+.admonitionblock > table td.icon { padding: 10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000313}}
+.admonitionblock > table td.icon .fa { font-size: 1.5em; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000317}}
+.admonitionblock > table td.icon .icon-tip:before { text-shadow: 0 0 20px white, 1px 1px 2px rgba(155, 155, 0, 0.8); }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000321}}
+.admonitionblock > table td.content { font-family: 'Noticia Text', italic; font-size: 95%; font-style: italic; border: 0; padding: 15px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000331}}
+.admonitionblock .literalblock > .content > pre, .admonitionblock .listingblock > .content > pre { background-image: url('/images/images/info-bg.jpg'); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000336}}
+.admonitionblock > table td.icon { text-align: center; width: 80px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000341}}
+table.tableblock { background-color: #FFFFFF; border: 2px solid #9EC6DF; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000345}}
+table.tableblock tbody tr { border-bottom: 1px solid #9EC6DF; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000349}}
+table.tableblock td { padding-top: 1em; padding-left: 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/jose\/workspace\/thymeleaf_talk\/docs\/sass\/custom\.scss}line{font-family:\0000356}}
+div.hdlist td.hdlist1 { font-weight: bold; padding-right: 1em; }
