@@ -10,6 +10,8 @@ v1.0, 2016-03-22
 
 == Primer fichero
 
+Bueno, los frontender se dedican al HTML, basicamente esto es lo que haceis no? :)
+
 [source,html]
 .Primera version de un html
 ----
@@ -21,6 +23,8 @@ v1.0, 2016-03-22
 ----
 
 == Pongamos CSS, JS e IMG
+
+Bueno, si, usais CSS, JS e IMAGENES.
 
 [source,html]
 .Segunda version del html usando css, js e imagenes.
@@ -50,7 +54,7 @@ By Neil T - CC BY-SA 2.0
 
 == Empezemos con Thymeleaf
 
-Thymeleaf es un sistema de templatign Java, que se suele utilizar dentro del ecosistema Spring.
+Thymeleaf es un sistema de templating Java, que se suele utilizar dentro del ecosistema Spring.
 
 Vamos a crear un proyecto spring-boot usando esta web: http://start.spring.io/
 
@@ -66,12 +70,22 @@ Añadimos al build.gradle
 
 == Hasta ahora solo es html
 
-Notar que hasta ahora estabamos mostrando estaticos, pero thymeleaf usa atributos distintos de los estandar con lo que podriamos seguir maquetando en "plano", notar los imports.
+Notar que hasta ahora estabamos mostrando estaticos, pero thymeleaf usa atributos
+distintos de los estandar con lo que podriamos seguir maquetando en "plano",
+notar los imports.
+
 
 == Si los transformamos en templates
 
 Añadimos un controlador (para gobernarlos a todos) y ponemos los tags de thymeleaf (dejando los estandar)
 Hacer uso de un css distinto, y de un js distinto..
+
+file:///WORKSPACE/src/main/resources/templates/index.html
+http://localhost:8080/generic/page1
+
+== Hay que tener en cuenta que el html debe ser valido
+
+org.xml.sax.SAXParseException: El tipo de elemento "link" debe finalizar por la etiqueta final coincidente "</link>".
 
 == Ahora que son templates, porque no usar toda la potencia
 
@@ -86,8 +100,41 @@ Binding, y la potencia de groovy
 
 http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html
 
-Docoupled logic
+Docoupled logic: http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic
 
+[source,html]
+.home.html Template sin logica extra
+----
+<!DOCTYPE html>
+<html>
+  <body>
+    <table id="usersTable">
+      <tr>
+        <td class="username">Jeremy Grapefruit</td>
+        <td class="usertype">Normal User</td>
+      </tr>
+      <tr>
+        <td class="username">Alice Watermelon</td>
+        <td class="usertype">Administrator</td>
+      </tr>
+    </table>
+  </body>
+</html>
+----
+
+[source,html]
+.home.th.html Logica para la template
+----
+<?xml version="1.0"?>
+<thlogic>
+  <attr sel="#usersTable" th:remove="all-but-first">
+    <attr sel="/tr[0]" th:each="user : ${users}">
+      <attr sel="td.username" th:text="${user.name}" />
+      <attr sel="td.usertype" th:text="#{|user.type.${user.type}|}" />
+    </attr>
+  </attr>
+</thlogic>
+----
 
 == JBake
 

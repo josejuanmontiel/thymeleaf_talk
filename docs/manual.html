@@ -119,6 +119,7 @@ table.CodeRay td.code>pre{padding:0}
 </section>
 <section class="slide" id="_primer_fichero">
 <h2>Primer fichero</h2>
+<div class="paragraph"><p>Bueno, los frontender se dedican al HTML, basicamente esto es lo que haceis no? :)</p></div>
 <div class="listingblock">
 <div class="title">Primera version de un html</div>
 <div class="content">
@@ -132,6 +133,7 @@ table.CodeRay td.code>pre{padding:0}
 </section>
 <section class="slide" id="_pongamos_css_js_e_img">
 <h2>Pongamos CSS, JS e IMG</h2>
+<div class="paragraph"><p>Bueno, si, usais CSS, JS e IMAGENES.</p></div>
 <div class="listingblock">
 <div class="title">Segunda version del html usando css, js e imagenes.</div>
 <div class="content">
@@ -158,7 +160,7 @@ table.CodeRay td.code>pre{padding:0}
 </section>
 <section class="slide" id="_empezemos_con_thymeleaf">
 <h2>Empezemos con Thymeleaf</h2>
-<div class="paragraph"><p>Thymeleaf es un sistema de templatign Java, que se suele utilizar dentro del ecosistema Spring.</p></div>
+<div class="paragraph"><p>Thymeleaf es un sistema de templating Java, que se suele utilizar dentro del ecosistema Spring.</p></div>
 <div class="paragraph"><p>Vamos a crear un proyecto spring-boot usando esta web: <a class="bare" href="http://start.spring.io/">http://start.spring.io/</a></p></div>
 <div class="paragraph"><p>Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun</p></div>
 </section>
@@ -175,12 +177,20 @@ table.CodeRay td.code>pre{padding:0}
 </section>
 <section class="slide" id="_hasta_ahora_solo_es_html">
 <h2>Hasta ahora solo es html</h2>
-<div class="paragraph"><p>Notar que hasta ahora estabamos mostrando estaticos, pero thymeleaf usa atributos distintos de los estandar con lo que podriamos seguir maquetando en "plano", notar los imports.</p></div>
+<div class="paragraph"><p>Notar que hasta ahora estabamos mostrando estaticos, pero thymeleaf usa atributos
+distintos de los estandar con lo que podriamos seguir maquetando en "plano",
+notar los imports.</p></div>
 </section>
 <section class="slide" id="_si_los_transformamos_en_templates">
 <h2>Si los transformamos en templates</h2>
 <div class="paragraph"><p>Añadimos un controlador (para gobernarlos a todos) y ponemos los tags de thymeleaf (dejando los estandar)
 Hacer uso de un css distinto, y de un js distinto..</p></div>
+<div class="paragraph"><p><a class="bare" href="file:///WORKSPACE/src/main/resources/templates/index.html">file:///WORKSPACE/src/main/resources/templates/index.html</a>
+<a class="bare" href="http://localhost:8080/generic/page1">http://localhost:8080/generic/page1</a></p></div>
+</section>
+<section class="slide" id="_hay_que_tener_en_cuenta_que_el_html_debe_ser_valido">
+<h2>Hay que tener en cuenta que el html debe ser valido</h2>
+<div class="paragraph"><p>org.xml.sax.SAXParseException: El tipo de elemento "link" debe finalizar por la etiqueta final coincidente "&lt;/link&gt;".</p></div>
 </section>
 <section class="slide" id="_ahora_que_son_templates_porque_no_usar_toda_la_potencia">
 <h2>Ahora que son templates, porque no usar toda la potencia</h2>
@@ -194,7 +204,41 @@ Includes</p></div>
 <section class="slide" id="_thymeleaf_3">
 <h2>Thymeleaf 3</h2>
 <div class="paragraph"><p><a class="bare" href="http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html">http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html</a></p></div>
-<div class="paragraph"><p>Docoupled logic</p></div>
+<div class="paragraph"><p>Docoupled logic: <a class="bare" href="http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic">http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic</a></p></div>
+<div class="listingblock">
+<div class="title">home.html Template sin logica extra</div>
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;table</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">usersTable</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;tr&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">username</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Jeremy Grapefruit<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">usertype</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Normal User<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+      <span class="tag">&lt;tr&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">username</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Alice Watermelon<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">usertype</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Administrator<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/table&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">home.th.html Logica para la template</div>
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="tag">&lt;thlogic&gt;</span>
+  <span class="tag">&lt;attr</span> <span class="attribute-name">sel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#usersTable</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:remove</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all-but-first</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;attr</span> <span class="attribute-name">sel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">/tr[0]</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:each</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">user : ${users}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;attr</span> <span class="attribute-name">sel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">td.username</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${user.name}</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;attr</span> <span class="attribute-name">sel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">td.usertype</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#{|user.type.${user.type}|}</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/attr&gt;</span>
+  <span class="tag">&lt;/attr&gt;</span>
+<span class="tag">&lt;/thlogic&gt;</span></code></pre>
+</div>
+</div>
 </section>
 <section class="slide" id="_jbake">
 <h2>JBake</h2>
