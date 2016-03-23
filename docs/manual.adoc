@@ -80,12 +80,51 @@ notar los imports.
 Añadimos un controlador (para gobernarlos a todos) y ponemos los tags de thymeleaf (dejando los estandar)
 Hacer uso de un css distinto, y de un js distinto..
 
-file:///WORKSPACE/src/main/resources/templates/index.html
 http://localhost:8080/generic/page1
 
 == Hay que tener en cuenta que el html debe ser valido
 
+http://localhost:8080/generic/page1
+
 org.xml.sax.SAXParseException: El tipo de elemento "link" debe finalizar por la etiqueta final coincidente "</link>".
+
+== ¿Ya no carga los css?
+
+file:///WORKSPACE/src/main/resources/templates/index.html
+
+Y para que sigua viendose como html, sin necesidad de arrancar, debemos referenciar al los recursos en su nueva ruta tras mover los html.
+
+[source,html]
+----
+<link type="text/css" rel="stylesheet" href="css/main.css" media="all" />
+----
+
+pasa a
+
+[source,html]
+----
+<link type="text/css" rel="stylesheet" href="../static/css/main.css" media="all" />
+----
+
+== ¿Y como referencio a los css desde el servidor?
+
+http://localhost:8080/generic/page1
+
+[source,html]
+----
+<link type="text/css" rel="stylesheet" href="../static/css/main.css" media="all" />
+
+<li><a href="page1.html">Page 1</a></li>
+----
+
+pasa a
+
+[source,html]
+----
+<link type="text/css" rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}" media="all" />
+
+<li><a href="page1.html" th:href="page1">Page 1</a></li>
+----
 
 == Ahora que son templates, porque no usar toda la potencia
 

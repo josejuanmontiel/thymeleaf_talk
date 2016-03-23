@@ -185,12 +185,47 @@ notar los imports.</p></div>
 <h2>Si los transformamos en templates</h2>
 <div class="paragraph"><p>Añadimos un controlador (para gobernarlos a todos) y ponemos los tags de thymeleaf (dejando los estandar)
 Hacer uso de un css distinto, y de un js distinto..</p></div>
-<div class="paragraph"><p><a class="bare" href="file:///WORKSPACE/src/main/resources/templates/index.html">file:///WORKSPACE/src/main/resources/templates/index.html</a>
-<a class="bare" href="http://localhost:8080/generic/page1">http://localhost:8080/generic/page1</a></p></div>
+<div class="paragraph"><p><a class="bare" href="http://localhost:8080/generic/page1">http://localhost:8080/generic/page1</a></p></div>
 </section>
 <section class="slide" id="_hay_que_tener_en_cuenta_que_el_html_debe_ser_valido">
 <h2>Hay que tener en cuenta que el html debe ser valido</h2>
+<div class="paragraph"><p><a class="bare" href="http://localhost:8080/generic/page1">http://localhost:8080/generic/page1</a></p></div>
 <div class="paragraph"><p>org.xml.sax.SAXParseException: El tipo de elemento "link" debe finalizar por la etiqueta final coincidente "&lt;/link&gt;".</p></div>
+</section>
+<section class="slide" id="__ya_no_carga_los_css">
+<h2>¿Ya no carga los css?</h2>
+<div class="paragraph"><p><a class="bare" href="file:///WORKSPACE/src/main/resources/templates/index.html">file:///WORKSPACE/src/main/resources/templates/index.html</a></p></div>
+<div class="paragraph"><p>Y para que sigua viendose como html, sin necesidad de arrancar, debemos referenciar al los recursos en su nueva ruta tras mover los html.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;link</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">css/main.css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">media</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph"><p>pasa a</p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;link</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/css/main.css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">media</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span></code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="__y_como_referencio_a_los_css_desde_el_servidor">
+<h2>¿Y como referencio a los css desde el servidor?</h2>
+<div class="paragraph"><p><a class="bare" href="http://localhost:8080/generic/page1">http://localhost:8080/generic/page1</a></p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;link</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/css/main.css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">media</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+
+<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">page1.html</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Page 1<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph"><p>pasa a</p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;link</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/css/main.css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/css/main.css}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">media</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+
+<span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">page1.html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">page1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Page 1<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span></code></pre>
+</div>
+</div>
 </section>
 <section class="slide" id="_ahora_que_son_templates_porque_no_usar_toda_la_potencia">
 <h2>Ahora que son templates, porque no usar toda la potencia</h2>

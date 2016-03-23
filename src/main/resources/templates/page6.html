@@ -1,17 +1,17 @@
 <!doctype html>
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="css/main.css" media="all" />
-		<script type="text/javascript" src="js/main.js"></script>
+		<link type="text/css" rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}" media="all" />
+		<script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 	</head>
 <body>
 	<ul>
-		<li><a href="page1.html">Page 1</a></li>
-		<li><a href="page2.html">Page 2</a></li>
-		<li><a href="page3.html">Page 3</a></li>
-		<li><a href="page4.html">Page 4</a></li>
-		<li><a href="page5.html">Page 5</a></li>
-		<li><a href="page6.html">Page 6</a></li>
+		<li><a href="page1.html" th:href="page1">Page 1</a></li>
+		<li><a href="page2.html" th:href="page2">Page 2</a></li>
+		<li><a href="page3.html" th:href="page3">Page 3</a></li>
+		<li><a href="page4.html" th:href="page4">Page 4</a></li>
+		<li><a href="page5.html" th:href="page5">Page 5</a></li>
+		<li><a href="page6.html" th:href="page6">Page 6</a></li>
 	</ul>
 	<div>Page6</div>
 </body>
