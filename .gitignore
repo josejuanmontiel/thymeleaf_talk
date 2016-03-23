@@ -1,1 +1,5 @@
 /derby.log
+/.gradle/*
+.jruby/*
+/build/*
+/docs/.sass-cache/*
