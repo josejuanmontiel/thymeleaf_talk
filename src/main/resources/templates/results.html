@@ -2,12 +2,13 @@
 <html layout:decorator="layouts/main">
 	<head>
 		<title>Index</title>
-		<link type="text/css" rel="stylesheet" href="../static/css/main.css" th:href="@{/css/index.css}" media="all" />
 	</head>
 <body class="colortecni-index">
 	<!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
     <div layout:fragment="content">
-		<div>Page1</div>
+		<div>Page2</div>
+		<p>Id: <span th:text="${greeting.id}"/></p>
+		<p>Message: <span th:text="${greeting.content}"/></p>
 	</div>
 </body>
 </html>

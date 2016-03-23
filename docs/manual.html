@@ -296,6 +296,7 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
 <span class="tag">&lt;/html&gt;</span></code></pre>
 </div>
 </div>
+<div class="paragraph"><p>Ojo al import de css que esta dentro de la pagina, que se añade al del layout&#8230;&#8203;</p></div>
 </section>
 <section class="slide" id="_includes">
 <h2>Includes</h2>
@@ -336,6 +337,61 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
 <section class="slide" id="_porque_no_ir_mas_alla_formularios">
 <h2>Porque no ir mas alla, formularios</h2>
 <div class="paragraph"><p>Binding, y la potencia de groovy</p></div>
+<div class="paragraph"><p><a class="bare" href="https://spring.io/guides/gs/handling-form-submission/">https://spring.io/guides/gs/handling-form-submission/</a></p></div>
+</section>
+<section class="slide" id="_controlador">
+<h2>Controlador</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Controller</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">GreetingController</span> {
+
+    <span class="annotation">@RequestMapping</span>(value=<span class="string"><span class="delimiter">&quot;</span><span class="content">/greeting</span><span class="delimiter">&quot;</span></span>, method=RequestMethod.GET)
+    <span class="directive">public</span> <span class="predefined-type">String</span> greetingForm(Model model) {
+        model.addAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">greeting</span><span class="delimiter">&quot;</span></span>, <span class="keyword">new</span> Greeting())
+        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">greeting</span><span class="delimiter">&quot;</span></span>
+    }
+
+    <span class="annotation">@RequestMapping</span>(value=<span class="string"><span class="delimiter">&quot;</span><span class="content">/greeting</span><span class="delimiter">&quot;</span></span>, method=RequestMethod.POST)
+    <span class="directive">public</span> <span class="predefined-type">String</span> greetingSubmit(<span class="annotation">@ModelAttribute</span> Greeting greeting, Model model) {
+        model.addAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">greeting</span><span class="delimiter">&quot;</span></span>, greeting)
+        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">results</span><span class="delimiter">&quot;</span></span>
+    }
+
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_controlador_2">
+<h2>Controlador</h2>
+<div class="paragraph"><p>Formulario</p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;div</span> <span class="attribute-name">layout:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div&gt;</span>Page1<span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>Form<span class="tag">&lt;/h1&gt;</span>
+        <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:action</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/greeting}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:object</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${greeting}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">post</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;p&gt;</span>Id: <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:field</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">*{id}</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;/p&gt;</span>
+                <span class="tag">&lt;p&gt;</span>Message: <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:field</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">*{content}</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;/p&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Submit</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span> <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">reset</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Reset</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/form&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph"><p>Resultado</p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;div</span> <span class="attribute-name">layout:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div&gt;</span>Page2<span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Id: <span class="tag">&lt;span</span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${greeting.id}</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Message: <span class="tag">&lt;span</span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${greeting.content}</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_validacion_de_datos_en_servidor">
+<h2>Validacion de datos en servidor</h2>
+
 </section>
 <section class="slide" id="_flujose_de_control_en_thymeleaf">
 <h2>Flujose de control en thymeleaf</h2>

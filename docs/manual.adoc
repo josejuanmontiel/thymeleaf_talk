@@ -193,6 +193,8 @@ Layouts, includes... http://www.thymeleaf.org/doc/articles/layouts.html
 </html>
 ----
 
+Ojo al import de css que esta dentro de la pagina, que se añade al del layout...
+
 == Includes
 
 [source,html]
@@ -231,6 +233,58 @@ Layouts, includes... http://www.thymeleaf.org/doc/articles/layouts.html
 == Porque no ir mas alla, formularios
 
 Binding, y la potencia de groovy
+
+https://spring.io/guides/gs/handling-form-submission/
+
+== Controlador
+[source,java]
+----
+@Controller
+public class GreetingController {
+
+    @RequestMapping(value="/greeting", method=RequestMethod.GET)
+    public String greetingForm(Model model) {
+        model.addAttribute("greeting", new Greeting())
+        return "greeting"
+    }
+
+    @RequestMapping(value="/greeting", method=RequestMethod.POST)
+    public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
+        model.addAttribute("greeting", greeting)
+        return "results"
+    }
+
+}
+----
+
+== Controlador
+
+Formulario
+
+[source,html]
+----
+<div layout:fragment="content">
+	<div>Page1</div>
+	<h1>Form</h1>
+	<form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+		<p>Id: <input type="text" th:field="*{id}" /></p>
+		<p>Message: <input type="text" th:field="*{content}" /></p>
+		<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+	</form>
+</div>
+----
+
+Resultado
+[source,html]
+----
+<div layout:fragment="content">
+	<div>Page2</div>
+	<p>Id: <span th:text="${greeting.id}"/></p>
+	<p>Message: <span th:text="${greeting.content}"/></p>
+</div>
+----
+
+== Validacion de datos en servidor
 
 == Flujose de control en thymeleaf
 
