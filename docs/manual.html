@@ -154,16 +154,20 @@ table.CodeRay td.code>pre{padding:0}
 </section>
 <section class="slide" id="_y_ahora_copy_paste">
 <h2>Y ahora copy/paste</h2>
-<div class="paragraph"><p>Una vez que tenemos la estructura nos ponemos a hacer paginas como churros.</p></div>
+<div class="paragraph"><p>Una vez que tenemos la estructura nos ponemos a hacer paginas como churros, ¿no?</p></div>
 </section>
 <section class="slide canvas-image" id="_slide_title_will_not_be_displayed" style="background-image: url(images/Krispy_Kreme_Doughnuts.jpg)">
 <div class="paragraph canvas-caption"><p class="center-up">By Neil T</p></div>
 </section>
 <section class="slide" id="_empezemos_con_thymeleaf">
 <h2>Empezemos con Thymeleaf</h2>
-<div class="paragraph"><p>Thymeleaf es un sistema de templating Java, que se suele utilizar dentro del ecosistema Spring.</p></div>
-<div class="paragraph"><p>Vamos a crear un proyecto spring-boot usando esta web: <a class="bare" href="http://start.spring.io/">http://start.spring.io/</a></p></div>
-<div class="paragraph"><p>Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun</p></div>
+<div class="ulist">
+<ul>
+<li>Thymeleaf es un sistema de templating Java, que se suele utilizar dentro del ecosistema Spring.</li>
+<li>Vamos a crear un proyecto spring-boot usando esta web: <a class="bare" href="http://start.spring.io/">http://start.spring.io/</a></li>
+<li>Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun</li>
+</ul>
+</div>
 </section>
 <section class="slide" id="_para_que_coja_los_cambios_en_caliente_empecemos_con_el_html">
 <h2>Para que coja los cambios en caliente (empecemos con el HTML)</h2>
@@ -185,13 +189,19 @@ notar los imports.</p></div>
 <section class="slide" id="_si_los_transformamos_en_templates">
 <h2>Si los transformamos en templates</h2>
 <div class="paragraph"><p>Añadimos un controlador (para gobernarlos a todos) y ponemos los tags de thymeleaf (dejando los estandar)
-Hacer uso de un css distinto, y de un js distinto..</p></div>
+Hacer uso de un css distinto, y de un js distinto..,</p></div>
 <div class="paragraph"><p><a class="bare" href="http://localhost:8080/generic/page1">http://localhost:8080/generic/page1</a></p></div>
 </section>
 <section class="slide" id="_hay_que_tener_en_cuenta_que_el_html_debe_ser_valido">
 <h2>Hay que tener en cuenta que el html debe ser valido</h2>
 <div class="paragraph"><p><a class="bare" href="http://localhost:8080/generic/page1">http://localhost:8080/generic/page1</a></p></div>
-<div class="paragraph"><p>org.xml.sax.SAXParseException: El tipo de elemento "link" debe finalizar por la etiqueta final coincidente "&lt;/link&gt;".</p></div>
+<div class="listingblock">
+<div class="title">Error tipico que lanza cuando no puede procesar el HTML bien,</div>
+<div class="content">
+<pre class="CodeRay"><code class="java language-java">org.xml.sax.SAXParseException: El tipo de elemento <span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> debe finalizar por la etiqueta <span class="directive">final</span> coincidente <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/link&gt;</span><span class="delimiter">&quot;</span></span>.</code></pre>
+</div>
+</div>
+<div class="paragraph"><p>En thymeleaf 2.1 LEGACYHTML5 puede ayudar. <a class="bare" href="https://github.com/thymeleaf/thymeleaf/issues/391">https://github.com/thymeleaf/thymeleaf/issues/391</a></p></div>
 </section>
 <section class="slide" id="__ya_no_carga_los_css">
 <h2>¿Ya no carga los css?</h2>
@@ -233,8 +243,8 @@ Hacer uso de un css distinto, y de un js distinto..</p></div>
 <div class="paragraph"><p>A partir de este momento, hay opciones para poder seguir viendo el "html plano" sin necesidad de levantar servidor:</p></div>
 <div class="ulist">
 <ul>
-<li>Thymol</li>
-<li>Thymeleaf3 - Decoupled logic</li>
+<li>Thymoljs - <a class="bare" href="http://www.thymoljs.org/">http://www.thymoljs.org/</a></li>
+<li>Thymeleaf3 - Decoupled logic - <a class="bare" href="http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic">http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic</a></li>
 </ul>
 </div>
 <div class="paragraph"><p>Podrias saltar a meter logica a las templates, bindings, rest&#8230;&#8203; pero tu que eres maquetador,
@@ -286,20 +296,26 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
                 <span class="tag">&lt;title&gt;</span>Index<span class="tag">&lt;/title&gt;</span>
                 <span class="tag">&lt;link</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text/css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/css/main.css</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/css/index.css}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">media</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
         <span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">colortecni-index</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-        <span class="comment">&lt;!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ --&gt;</span>
-    <span class="tag">&lt;div</span> <span class="attribute-name">layout:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-                <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/img/logo_0.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/img/logo_0.png}</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
-                <span class="tag">&lt;button</span> <span class="attribute-name">onclick</span>=<span class="string"><span class="delimiter">&quot;</span>ejemplo()<span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>LOGICA<span class="tag">&lt;/button&gt;</span>
-        <span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
+        <span class="tag">&lt;body</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">colortecni-index</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="comment">&lt;!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ --&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">layout:fragment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../static/img/logo_0.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/img/logo_0.png}</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+                        <span class="tag">&lt;button</span> <span class="attribute-name">onclick</span>=<span class="string"><span class="delimiter">&quot;</span>ejemplo()<span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>LOGICA<span class="tag">&lt;/button&gt;</span>
+                <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/body&gt;</span>
 <span class="tag">&lt;/html&gt;</span></code></pre>
 </div>
 </div>
-<div class="paragraph"><p>Ojo al import de css que esta dentro de la pagina, que se añade al del layout&#8230;&#8203;</p></div>
+<div class="ulist">
+<ul>
+<li>Ojo al import de css que esta dentro de la pagina, que se añade al del layout&#8230;&#8203;</li>
+<li>Tambien al decorator con el title&#8230;&#8203;</li>
+</ul>
+</div>
 </section>
 <section class="slide" id="_includes">
 <h2>Includes</h2>
+<div class="paragraph"><p>Si nos fijamos en el layout, habia includes que se usaban para añadir partes comunes, en todas las templates que usen ese layout, y asi se pueden reusar en otras, componentes, vamos&#8230;&#8203;</p></div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay"><code class="html language-html"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
@@ -391,11 +407,50 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
 </section>
 <section class="slide" id="_validacion_de_datos_en_servidor">
 <h2>Validacion de datos en servidor</h2>
+<div class="paragraph"><p>Resultado</p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Greeting</span> {
+        <span class="annotation">@Min</span>(<span class="integer">1l</span>)
+    <span class="type">long</span> id
+    <span class="annotation">@NotBlank</span>
+    <span class="predefined-type">String</span> content
+}</code></pre>
+</div>
+</div>
+<div class="paragraph"><p>Mas info en:</p></div>
+<div class="ulist">
+<ul>
+<li><a class="bare" href="https://spring.io/guides/gs/validating-form-input/">https://spring.io/guides/gs/validating-form-input/</a></li>
+<li><a class="bare" href="http://hibernate.org/validator/">http://hibernate.org/validator/</a></li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_servicios_rest_json">
+<h2>Servicios rest - JSON</h2>
+<div class="paragraph"><p>¿Quieres exponer un servicio rest para consumirlo desde tu maqueta HTML con el framework js de moda?</p></div>
+<div class="paragraph"><p>Mas info en:</p></div>
+<div class="ulist">
+<ul>
+<li><a class="bare" href="https://github.com/olivergierke/spring-restbucks">https://github.com/olivergierke/spring-restbucks</a></li>
+<li><a class="bare" href="https://github.com/ilopmar/contest">https://github.com/ilopmar/contest</a></li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_flujos_de_control_en_thymeleaf">
+<h2>Flujos de control en thymeleaf</h2>
 
 </section>
-<section class="slide" id="_flujose_de_control_en_thymeleaf">
-<h2>Flujose de control en thymeleaf</h2>
-
+<section class="slide" id="_ejemplos_complejos_html_vs_tipo_dato">
+<h2>Ejemplos complejos html vs tipo dato</h2>
+<div class="paragraph"><p><a class="bare" href="https://github.com/thymeleaf/thymeleafexamples-petclinic">https://github.com/thymeleaf/thymeleafexamples-petclinic</a></p></div>
+</section>
+<section class="slide" id="_ajax_con_thymeleaf_fragmentos">
+<h2>Ajax con thymeleaf, fragmentos</h2>
+<div class="paragraph"><p><a class="bare" href="https://github.com/sunnydyal/spring-webflow-thymeleaf-ajax-fragment-sample/tree/master/spring-webflow-thymeleaf-ajax-fragment-sample">https://github.com/sunnydyal/spring-webflow-thymeleaf-ajax-fragment-sample/tree/master/spring-webflow-thymeleaf-ajax-fragment-sample</a>
+<a class="bare" href="http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#ajax-fragments">http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#ajax-fragments</a>
+<a class="bare" href="https://unpocodejava.wordpress.com/2014/04/10/ajax-y-thymeleaf-fragments/">https://unpocodejava.wordpress.com/2014/04/10/ajax-y-thymeleaf-fragments/</a>
+Correo: Investigación Ajax-Thymeleaf</p></div>
 </section>
 <section class="slide" id="_thymeleaf_pro_tips">
 <h2>Thymeleaf pro tips</h2>
@@ -408,6 +463,11 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
     <span class="tag">&lt;tr</span> <span class="attribute-name">th:each</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">artist,rowStat : ${listArtits.?[alive == true].![firstname+' '+lastname]}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span></code></pre>
 </div>
 </div>
+</section>
+<section class="slide" id="_sass_less_gradle">
+<h2>SASS / LESS - Gradle</h2>
+<div class="paragraph"><p><a class="bare" href="https://github.com/robfletcher/gradle-compass">https://github.com/robfletcher/gradle-compass</a>
+<a class="bare" href="http://broonix-rants.ghost.io/spring-boot-building-bootstrap-with-gulp-2/">http://broonix-rants.ghost.io/spring-boot-building-bootstrap-with-gulp-2/</a></p></div>
 </section>
 <section class="slide" id="_thymeleaf_3">
 <h2>Thymeleaf 3</h2>
@@ -452,19 +512,13 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
 <h2>JBake</h2>
 <div class="paragraph"><p><a class="bare" href="http://jbake.org/docs/2.4.0/#project_structure">http://jbake.org/docs/2.4.0/#project_structure</a></p></div>
 </section>
-<section class="slide" id="_servicios_rest_json">
-<h2>Servicios rest - JSON</h2>
-<div class="paragraph"><p><a class="bare" href="https://github.com/olivergierke/spring-restbucks">https://github.com/olivergierke/spring-restbucks</a>
-<a class="bare" href="https://github.com/ilopmar/contest">https://github.com/ilopmar/contest</a></p></div>
-</section>
-<section class="slide" id="_sass_less_gradle">
-<h2>SASS / LESS - Gradle</h2>
-<div class="paragraph"><p><a class="bare" href="https://github.com/robfletcher/gradle-compass">https://github.com/robfletcher/gradle-compass</a>
-<a class="bare" href="http://broonix-rants.ghost.io/spring-boot-building-bootstrap-with-gulp-2/">http://broonix-rants.ghost.io/spring-boot-building-bootstrap-with-gulp-2/</a></p></div>
-</section>
 <section class="slide" id="_grooscript">
 <h2>Grooscript</h2>
 <div class="paragraph"><p><a class="bare" href="http://grooscript.org/doc.html">http://grooscript.org/doc.html</a></p></div>
+</section>
+<section class="slide" id="_para_instalar_aunque_no_es_necesario_gradle_springboot_jbake">
+<h2>Para instalar (aunque no es necesario) gradle, springboot, jbake</h2>
+<div class="paragraph"><p><a class="bare" href="http://sdkman.io/install.html">http://sdkman.io/install.html</a></p></div>
 </section>
 <section class="slide" id="_como_usar_git_presenter">
 <h2>Como usar Git Presenter</h2>

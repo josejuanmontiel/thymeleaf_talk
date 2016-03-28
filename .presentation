@@ -22,5 +22,24 @@ slides:
     commit: 1dcb8f25b60b3f6a774e26d1b6d633986d903bb5
     message: Cambios para que coja los cambios en el html en caliente.
 - slide:
-    commit: b6ee6c36818ea252ef78b1da7db622ff887ab7d4
-    message: Perfilamos documentacion completa
+    commit: d850b27dd0ef563ca0b1f20ac171c169e24b8fbb
+    message: Movemos el html a las carpetas de tempaltes
+- slide:
+    commit: debfa211292fdbe2cabcdf1432151b17bc2a3f7e
+    message: Ajustamos el markup del html para que sea correcto (que se cierren los
+      elemntos)
+- slide:
+    commit: 3688a557a99a99a2713099071dab8b00cf1f90cc
+    message: Actualizamos referencias a recursos para que se vean bien desde servidor.
+- slide:
+    commit: c583e88826930866f6ac3605e48ff71926506272
+    message: Uso de layouts e includes.
+- slide:
+    commit: 7a7fc6aa2573931f70968a288de5c1074f42c2d2
+    message: Usamos el layout para el resto de paginas.
+- slide:
+    commit: 41c194790359e5bd1051c3b840b2bc68a05cae74
+    message: Manejo de formularios
+- slide:
+    commit: 4264e8f543f8d8ec4f8b350b7fd130d9f8935845
+    message: añadimos validacion de formulario en servidor.
