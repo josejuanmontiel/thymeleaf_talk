@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 
-import org.springframework.validation.BindingResult;
-import javax.validation.Valid;
+import org.springframework.validation.BindingResult
+import javax.validation.Valid
 
 import com.tecnilogica.model.Greeting
 
@@ -28,7 +28,7 @@ public class GreetingController {
         if (bindingResult.hasErrors()) {
             return "greeting";
         }
-        
+
         model.addAttribute("greeting", greeting)
         return "results"
     }

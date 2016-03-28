@@ -165,7 +165,7 @@ table.CodeRay td.code>pre{padding:0}
 <ul>
 <li>Thymeleaf es un sistema de templating Java, que se suele utilizar dentro del ecosistema Spring.</li>
 <li>Vamos a crear un proyecto spring-boot usando esta web: <a class="bare" href="http://start.spring.io/">http://start.spring.io/</a></li>
-<li>Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun</li>
+<li>Con este lo arrancamos: ~/workspace/thymeleaf_talk$ ./gradlew bootRun --continuous</li>
 </ul>
 </div>
 </section>
@@ -350,8 +350,19 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
 <section class="slide canvas-image" id="_slide_title_will_not_be_displayed_3" style="background-image: url(images/layouts-includes.png)">
 
 </section>
-<section class="slide" id="_porque_no_ir_mas_alla_formularios">
-<h2>Porque no ir mas alla, formularios</h2>
+<section class="slide" id="_porque_no_ir_mas_alla_groovy_clases">
+<h2>Porque no ir mas alla, groovy, clases&#8230;&#8203;</h2>
+<div class="ulist">
+<ul>
+<li>Con este comando aceleramos las build de gradle: touch ~/.gradle/gradle.properties &amp;&amp; echo "org.gradle.daemon=true" &gt;&gt; ~/.gradle/gradle.prerties</li>
+<li>Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew build --continuous</li>
+<li>Y en otro terminal: ./gradle bootRun</li>
+</ul>
+</div>
+<div class="paragraph"><p>Asi de esta manera, sin un ide, podemos aprovechar la ventaja de las devtools de spring-boot <a class="bare" href="https://spring.io/blog/2015/06/17/devtools-in-spring-boot-1-3">https://spring.io/blog/2015/06/17/devtools-in-spring-boot-1-3</a></p></div>
+</section>
+<section class="slide" id="_ahora_podemos_montar_formularios">
+<h2>Ahora podemos montar formularios</h2>
 <div class="paragraph"><p>Binding, y la potencia de groovy</p></div>
 <div class="paragraph"><p><a class="bare" href="https://spring.io/guides/gs/handling-form-submission/">https://spring.io/guides/gs/handling-form-submission/</a></p></div>
 </section>
@@ -407,7 +418,7 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
 </section>
 <section class="slide" id="_validacion_de_datos_en_servidor">
 <h2>Validacion de datos en servidor</h2>
-<div class="paragraph"><p>Resultado</p></div>
+<div class="paragraph"><p>Anotaciones para validar</p></div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Greeting</span> {
@@ -429,9 +440,26 @@ te gusta estructurar tu HTML en componentes y no tener que repetir menus, header
 <section class="slide" id="_servicios_rest_json">
 <h2>Servicios rest - JSON</h2>
 <div class="paragraph"><p>¿Quieres exponer un servicio rest para consumirlo desde tu maqueta HTML con el framework js de moda?</p></div>
+<div class="paragraph"><p>Controlador rest</p></div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> template = <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, %s!</span><span class="delimiter">&quot;</span></span>
+<span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">AtomicLong</span> counter = <span class="keyword">new</span> <span class="predefined-type">AtomicLong</span>()
+
+<span class="annotation">@RequestMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/rest/greeting</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> Greeting greeting(<span class="annotation">@RequestParam</span>(value=<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>, defaultValue=<span class="string"><span class="delimiter">&quot;</span><span class="content">World</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">String</span> name) {
+        <span class="keyword">return</span> <span class="keyword">new</span> Greeting(
+                id: counter.incrementAndGet(),
+                content: <span class="predefined-type">String</span>.format(template, name)
+        )
+}</code></pre>
+</div>
+</div>
+<div class="paragraph"><p><a class="bare" href="http://localhost:8080/rest/greeting">http://localhost:8080/rest/greeting</a></p></div>
 <div class="paragraph"><p>Mas info en:</p></div>
 <div class="ulist">
 <ul>
+<li><a class="bare" href="https://spring.io/guides/gs/rest-service/">https://spring.io/guides/gs/rest-service/</a></li>
 <li><a class="bare" href="https://github.com/olivergierke/spring-restbucks">https://github.com/olivergierke/spring-restbucks</a></li>
 <li><a class="bare" href="https://github.com/ilopmar/contest">https://github.com/ilopmar/contest</a></li>
 </ul>
