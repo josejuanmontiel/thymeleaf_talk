@@ -45,7 +45,7 @@ Bueno, si, usais CSS, JS e IMAGENES.
 
 == Y ahora copy/paste
 
-Una vez que tenemos la estructura nos ponemos a hacer paginas como churros.
+Una vez que tenemos la estructura nos ponemos a hacer paginas como churros, ¿no?
 
 [canvas-image=images/Krispy_Kreme_Doughnuts.jpg]
 == Slide Title will not be displayed
@@ -55,11 +55,9 @@ By Neil T
 
 == Empezemos con Thymeleaf
 
-Thymeleaf es un sistema de templating Java, que se suele utilizar dentro del ecosistema Spring.
-
-Vamos a crear un proyecto spring-boot usando esta web: http://start.spring.io/
-
-Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun
+* Thymeleaf es un sistema de templating Java, que se suele utilizar dentro del ecosistema Spring.
+* Vamos a crear un proyecto spring-boot usando esta web: http://start.spring.io/
+* Y lo arrancamos con: ~/workspace/thymeleaf_talk$ ./gradlew bootRun
 
 == Para que coja los cambios en caliente (empecemos con el HTML)
 
@@ -75,11 +73,10 @@ Notar que hasta ahora estabamos mostrando estaticos, pero thymeleaf usa atributo
 distintos de los estandar con lo que podriamos seguir maquetando en "plano",
 notar los imports.
 
-
 == Si los transformamos en templates
 
 Añadimos un controlador (para gobernarlos a todos) y ponemos los tags de thymeleaf (dejando los estandar)
-Hacer uso de un css distinto, y de un js distinto..
+Hacer uso de un css distinto, y de un js distinto..,
 
 http://localhost:8080/generic/page1
 
@@ -87,7 +84,13 @@ http://localhost:8080/generic/page1
 
 http://localhost:8080/generic/page1
 
+[source,java]
+.Error tipico que lanza cuando no puede procesar el HTML bien,
+----
 org.xml.sax.SAXParseException: El tipo de elemento "link" debe finalizar por la etiqueta final coincidente "</link>".
+----
+
+En thymeleaf 2.1 LEGACYHTML5 puede ayudar. https://github.com/thymeleaf/thymeleaf/issues/391
 
 == ¿Ya no carga los css?
 
@@ -131,8 +134,8 @@ pasa a
 
 A partir de este momento, hay opciones para poder seguir viendo el "html plano" sin necesidad de levantar servidor:
 
-* Thymol
-* Thymeleaf3 - Decoupled logic
+* Thymoljs - http://www.thymoljs.org/
+* Thymeleaf3 - Decoupled logic - http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#decoupled-template-logic
 
 Podrias saltar a meter logica a las templates, bindings, rest... pero tu que eres maquetador,
 te gusta estructurar tu HTML en componentes y no tener que repetir menus, headers, footes y componentes por todas partes.
@@ -183,19 +186,22 @@ Layouts, includes... http://www.thymeleaf.org/doc/articles/layouts.html
 		<title>Index</title>
 		<link type="text/css" rel="stylesheet" href="../static/css/main.css" th:href="@{/css/index.css}" media="all" />
 	</head>
-<body class="colortecni-index">
-	<!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
-    <div layout:fragment="content">
-		<img src="../static/img/logo_0.png" th:src="@{/img/logo_0.png}"/>
-		<button onclick="ejemplo()">LOGICA</button>
-	</div>
-</body>
+	<body class="colortecni-index">
+		<!-- /* Content of this page will be decorated by the elements of layout.html (task/layout) */ -->
+    	<div layout:fragment="content">
+			<img src="../static/img/logo_0.png" th:src="@{/img/logo_0.png}"/>
+			<button onclick="ejemplo()">LOGICA</button>
+		</div>
+	</body>
 </html>
 ----
 
-Ojo al import de css que esta dentro de la pagina, que se añade al del layout...
+* Ojo al import de css que esta dentro de la pagina, que se añade al del layout...
+* Tambien al decorator con el title...
 
 == Includes
+
+Si nos fijamos en el layout, habia includes que se usaban para añadir partes comunes, en todas las templates que usen ese layout, y asi se pueden reusar en otras, componentes, vamos...
 
 [source,html]
 ----
@@ -286,7 +292,46 @@ Resultado
 
 == Validacion de datos en servidor
 
-== Flujose de control en thymeleaf
+Resultado
+[source,java]
+----
+public class Greeting {
+	@Min(1l)
+    long id
+    @NotBlank
+    String content
+}
+----
+
+Mas info en:
+
+* https://spring.io/guides/gs/validating-form-input/
+* http://hibernate.org/validator/
+
+== Servicios rest - JSON
+
+¿Quieres exponer un servicio rest para consumirlo desde tu maqueta HTML con el framework js de moda?
+
+
+
+
+Mas info en:
+
+* https://github.com/olivergierke/spring-restbucks
+* https://github.com/ilopmar/contest
+
+== Flujos de control en thymeleaf
+
+== Ejemplos complejos html vs tipo dato
+
+https://github.com/thymeleaf/thymeleafexamples-petclinic
+
+== Ajax con thymeleaf, fragmentos
+
+https://github.com/sunnydyal/spring-webflow-thymeleaf-ajax-fragment-sample/tree/master/spring-webflow-thymeleaf-ajax-fragment-sample
+http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#ajax-fragments
+https://unpocodejava.wordpress.com/2014/04/10/ajax-y-thymeleaf-fragments/
+Correo: Investigación Ajax-Thymeleaf
 
 == Thymeleaf pro tips
 
@@ -300,6 +345,11 @@ https://doanduyhai.wordpress.com/2012/04/14/spring-mvc-part-iv-thymeleaf-advance
     <tr th:each="artist,rowStat : ${listArtits.![firstname+' '+lastname]}">
     <tr th:each="artist,rowStat : ${listArtits.?[alive == true].![firstname+' '+lastname]}">
 ----
+
+== SASS / LESS - Gradle
+
+https://github.com/robfletcher/gradle-compass
+http://broonix-rants.ghost.io/spring-boot-building-bootstrap-with-gulp-2/
 
 == Thymeleaf 3
 
@@ -345,19 +395,13 @@ Decoupled logic: http://www.thymeleaf.org/doc/articles/thymeleaf3migration.html#
 
 http://jbake.org/docs/2.4.0/#project_structure
 
-== Servicios rest - JSON
-
-https://github.com/olivergierke/spring-restbucks
-https://github.com/ilopmar/contest
-
-== SASS / LESS - Gradle
-
-https://github.com/robfletcher/gradle-compass
-http://broonix-rants.ghost.io/spring-boot-building-bootstrap-with-gulp-2/
-
 == Grooscript
 
 http://grooscript.org/doc.html
+
+== Para instalar (aunque no es necesario) gradle, springboot, jbake
+
+http://sdkman.io/install.html
 
 == Como usar Git Presenter
 
