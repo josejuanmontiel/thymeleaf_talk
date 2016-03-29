@@ -20,6 +20,8 @@ v1.0, 2016-03-22
 - Resaltar mas lo de las css comunes y especificas... y titulo...
 - Añadir pagina 7 para que se vea... (tirar del git donde estaba el paso de 5 a 6)
 - Mostrar ejemplo de th:fragment para añadir componentes
+- Mover css aqui
+- A partir de aqui hacer primero documentacion, y luego ejemplos...
 
 
 == Primer fichero
