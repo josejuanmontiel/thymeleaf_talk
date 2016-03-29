@@ -43,3 +43,6 @@ slides:
 - slide:
     commit: 4264e8f543f8d8ec4f8b350b7fd130d9f8935845
     message: añadimos validacion de formulario en servidor.
+- slide:
+    commit: a7b4e7383b844116d23e0600353ab84b4abfe3fc
+    message: Generacion de servicios rest para usar desde front
