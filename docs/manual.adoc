@@ -9,6 +9,19 @@
 Jose Juan Montiel <josejuan.montiel@tecnilogica.com>
 v1.0, 2016-03-22
 
+
+== NOTAS
+- Hacer chuleta que sincronice los pasos de git-presenter con sliders
+- Usuar 2 pantallas para ocultar la presentacion
+	- Llegado el momento pasar en 1
+- Ocultar un poco gradle... hasta mas adelante, solo notar que se descarga un proyecto base
+- Notar las diferencias entre html y thymeleaf
+- Cuando se llega al punto de los layouts, detallar claramente como funcionan, flechitas...
+- Resaltar mas lo de las css comunes y especificas... y titulo...
+- Añadir pagina 7 para que se vea... (tirar del git donde estaba el paso de 5 a 6)
+- Mostrar ejemplo de th:fragment para añadir componentes
+
+
 == Primer fichero
 
 Bueno, los frontender se dedican al HTML, basicamente esto es lo que haceis no? :)
